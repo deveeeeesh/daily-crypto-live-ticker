@@ -2,75 +2,74 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Daily Crypto — Live BTC/ETH Price Bar</title>
+<title>Daily Crypto — Live BTC/ETH Price</title>
 <meta name="viewport" content="width=1920,height=1080">
 <style>
-  /* OBS Browser Source: 1920x1080, transparent. Bar sits in the gap between display capture (ends y=908) and the gold ticker (starts y=996). */
+  /* OBS Browser Source: 1920x1080, transparent, position 0,0.
+     Price plates sit inside the overlay's BITCOIN and ETHEREUM cards (DailyCryptoObs.tsx:
+     coins slot 24,100 420x444 -> two cards 420x214, gap 16), over the bottom sparkline row. */
   @font-face { font-family: "Anton"; src: url("fonts/Anton.ttf") format("truetype"); font-display: block; }
   @font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
   :root {
-    --black: #0A0B0D; --off: #F4F4F2; --gold: #F5B731; --deep: #C98A12;
+    --black: #0A0B0D; --off: #F4F4F2; --gold: #F5B731;
     --green: #22C55E; --red: #EF4444; --btc: #F7931A; --eth: #8C9EFF; --muted: #8A8C92;
   }
   html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
   body.bg { background-size: 1920px 1080px; background-repeat: no-repeat; }
-  #bar {
-    position: absolute; left: 460px; top: 920px; width: 1436px; height: 64px; box-sizing: border-box;
-    display: flex; align-items: stretch; border-radius: 14px; overflow: hidden;
-    background: linear-gradient(180deg, rgba(28,26,20,0.94), rgba(10,11,13,0.96));
-    border: 2px solid rgba(245,183,49,0.75); box-shadow: 0 0 22px rgba(245,183,49,0.18), 0 10px 30px rgba(0,0,0,0.5);
+
+  /* card inner area: card x 24..444, left accent stripe 8px + 2px border -> content from x 34.
+     plate spans the sparkline row: x 46..432, y = cardTop + 132 .. cardTop + 204 */
+  .plate {
+    position: absolute; left: 46px; width: 386px; height: 72px; box-sizing: border-box;
+    display: flex; align-items: center; gap: 12px; padding: 0 14px 0 16px;
+    border-radius: 12px; background: linear-gradient(180deg, #16150f 0%, #0c0d0f 100%);
+    border: 1.5px solid var(--c); box-shadow: inset 0 0 18px var(--glow), 0 6px 18px rgba(0,0,0,0.45);
     opacity: 0; transition: opacity .6s ease;
   }
-  #bar.ready { opacity: 1; }
-  .coin { flex: 1; display: flex; align-items: center; gap: 18px; padding: 0 26px 0 0; position: relative; }
-  .coin + .coin { border-left: 2px solid rgba(245,183,49,0.35); }
-  .stripe { width: 8px; align-self: stretch; }
-  .glyph {
-    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-family: "Inter"; font-weight: 900; font-size: 24px; color: var(--black); margin-left: 10px; flex-shrink: 0;
-  }
-  .name { font-family: "Anton"; font-size: 30px; letter-spacing: 1px; color: var(--off); line-height: 1; }
-  .pair { font-family: "Inter"; font-weight: 800; font-size: 13px; letter-spacing: 2.5px; color: var(--muted); margin-top: 4px; }
-  .label { display: flex; flex-direction: column; }
+  .plate.ready { opacity: 1; }
+  #BTC { top: 232px; --c: rgba(247,147,26,0.55); --glow: rgba(247,147,26,0.10); }
+  #ETH { top: 462px; --c: rgba(140,158,255,0.55); --glow: rgba(140,158,255,0.10); }
+
+  .left { display: flex; flex-direction: column; justify-content: center; min-width: 0; flex: 1; }
+  .cap { font-family: "Inter"; font-weight: 800; font-size: 12px; letter-spacing: 2.6px; color: var(--muted); line-height: 1; margin-bottom: 6px; white-space: nowrap; }
+  .cap b { color: var(--tick); font-weight: 900; }
+  #BTC .cap { --tick: var(--btc); }
+  #ETH .cap { --tick: var(--eth); }
   .price {
-    margin-left: auto; font-family: "Inter"; font-weight: 800; font-size: 38px; color: var(--off);
-    font-variant-numeric: tabular-nums; letter-spacing: -0.5px; padding: 2px 10px; border-radius: 8px;
-    transition: color .9s ease, background-color .9s ease;
+    font-family: "Inter"; font-weight: 800; font-size: 36px; line-height: 1; color: var(--off); white-space: nowrap;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.6px; transform-origin: left center;
+    transition: color .9s ease, text-shadow .9s ease;
   }
-  .price.up   { color: var(--green); background-color: rgba(34,197,94,0.14); transition: none; }
-  .price.down { color: var(--red);   background-color: rgba(239,68,68,0.14); transition: none; }
+  .price.up   { color: var(--green); text-shadow: 0 0 14px rgba(34,197,94,0.55); transition: none; }
+  .price.down { color: var(--red);   text-shadow: 0 0 14px rgba(239,68,68,0.55); transition: none; }
+
+  .right { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
   .chg {
-    font-family: "Inter"; font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums;
-    padding: 6px 12px; border-radius: 999px; min-width: 118px; text-align: center; box-sizing: border-box;
+    font-family: "Inter"; font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; white-space: nowrap;
+    padding: 6px 10px; border-radius: 999px; min-width: 104px; text-align: center; box-sizing: border-box;
   }
-  .chg.pos { color: var(--green); background: rgba(34,197,94,0.14); border: 1.5px solid rgba(34,197,94,0.5); }
-  .chg.neg { color: var(--red);   background: rgba(239,68,68,0.14); border: 1.5px solid rgba(239,68,68,0.5); }
-  .chg-cap { font-family: "Inter"; font-weight: 700; font-size: 11px; letter-spacing: 2px; color: var(--muted); text-align: center; margin-top: 3px; }
-  #status {
-    position: absolute; right: 12px; top: -11px; font-family: "Inter"; font-weight: 800; font-size: 11px; letter-spacing: 2px;
-    color: var(--black); background: var(--gold); padding: 3px 8px; border-radius: 6px; display: none;
+  .chg.pos { color: var(--green); background: rgba(34,197,94,0.13); border: 1.5px solid rgba(34,197,94,0.5); }
+  .chg.neg { color: var(--red);   background: rgba(239,68,68,0.13); border: 1.5px solid rgba(239,68,68,0.5); }
+  .chg-cap { font-family: "Inter"; font-weight: 800; font-size: 10px; letter-spacing: 2.2px; color: var(--muted); margin-top: 5px; }
+
+  .status {
+    position: absolute; right: 10px; top: -10px; font-family: "Inter"; font-weight: 800; font-size: 10px; letter-spacing: 1.8px;
+    color: var(--black); background: var(--gold); padding: 3px 7px; border-radius: 5px; display: none;
   }
-  #bar.stale .price, #bar.stale .chg { opacity: .45; }
-  #bar.stale #status { display: block; }
+  .plate.stale .price, .plate.stale .chg { opacity: .45; }
+  .plate.stale .status { display: block; }
 </style>
 </head>
 <body>
-<div id="bar">
-  <div class="coin" id="BTC">
-    <div class="stripe" style="background: var(--btc)"></div>
-    <div class="glyph" style="background: var(--btc)">₿</div>
-    <div class="label"><div class="name">BITCOIN</div><div class="pair">BTC / USD</div></div>
-    <div class="price">—</div>
-    <div><div class="chg pos">—</div><div class="chg-cap">24H</div></div>
-  </div>
-  <div class="coin" id="ETH">
-    <div class="stripe" style="background: var(--eth)"></div>
-    <div class="glyph" style="background: var(--eth)">Ξ</div>
-    <div class="label"><div class="name">ETHEREUM</div><div class="pair">ETH / USD</div></div>
-    <div class="price">—</div>
-    <div><div class="chg pos">—</div><div class="chg-cap">24H</div></div>
-  </div>
-  <div id="status">UPDATING…</div>
+<div class="plate" id="BTC">
+  <div class="left"><div class="cap"><b>BTC</b> / USD · LIVE PRICE</div><div class="price">—</div></div>
+  <div class="right"><div class="chg pos">—</div><div class="chg-cap">24H CHANGE</div></div>
+  <div class="status">UPDATING…</div>
+</div>
+<div class="plate" id="ETH">
+  <div class="left"><div class="cap"><b>ETH</b> / USD · LIVE PRICE</div><div class="price">—</div></div>
+  <div class="right"><div class="chg pos">—</div><div class="chg-cap">24H CHANGE</div></div>
+  <div class="status">UPDATING…</div>
 </div>
 
 <script>
@@ -81,11 +80,10 @@
   const forceSource = params.get("source"); // optional: binance | coinbase | coingecko (for testing)
 
   // ---------- state + render ----------
-  const STALE_MS = 60000;        // dim + "UPDATING…" if no fresh price for 60 s
+  const STALE_MS = 60000;            // dim + "UPDATING…" if no fresh price for 60 s
   const SILENT_RECONNECT_MS = 20000; // a live socket silent for 20 s gets reopened
   const state = { BTC: { price: null, chg: null, shown: null }, ETH: { price: null, chg: null, shown: null } };
   let lastUpdate = 0;
-  const bar = document.getElementById("bar");
   const fmt = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   function update(sym, price, chg) {
@@ -95,24 +93,34 @@
     lastUpdate = Date.now();
   }
 
+  // shrink the price if it ever gets wider than its column (e.g. BTC above $1,000,000)
+  function fit(priceEl) {
+    priceEl.style.transform = "";
+    const avail = priceEl.parentElement.clientWidth, w = priceEl.scrollWidth;
+    if (w > avail) priceEl.style.transform = `scale(${avail / w})`;
+  }
+
   // render at most 4x per second so fast feeds (Coinbase sends every trade) stay cheap
   function render() {
+    const stale = lastUpdate > 0 && Date.now() - lastUpdate > STALE_MS;
     for (const sym of ["BTC", "ETH"]) {
-      const s = state[sym];
+      const s = state[sym], el = document.getElementById(sym);
+      el.classList.toggle("stale", stale);
       if (s.price == null) continue;
-      const el = document.getElementById(sym);
+      el.classList.add("ready");
       const priceEl = el.querySelector(".price");
       const text = "$" + fmt.format(s.price);
       if (text !== priceEl.textContent) {
         if (s.shown != null && s.price !== s.shown) {
-          const dir = s.price > s.shown ? "up" : "down";
           priceEl.classList.remove("up", "down");
           void priceEl.offsetWidth; // restart the flash
-          priceEl.classList.add(dir);
+          priceEl.classList.add(s.price > s.shown ? "up" : "down");
           clearTimeout(priceEl._t);
           priceEl._t = setTimeout(() => priceEl.classList.remove("up", "down"), 350);
         }
+        const widthChanged = text.length !== priceEl.textContent.length;
         priceEl.textContent = text;
+        if (widthChanged) fit(priceEl);
         s.shown = s.price;
       }
       if (s.chg != null) {
@@ -122,8 +130,6 @@
         if (c.textContent !== t) { c.textContent = t; c.className = "chg " + (pos ? "pos" : "neg"); }
       }
     }
-    if (state.BTC.price != null && state.ETH.price != null) bar.classList.add("ready");
-    bar.classList.toggle("stale", lastUpdate > 0 && Date.now() - lastUpdate > STALE_MS);
   }
   setInterval(render, 250);
 
@@ -168,7 +174,7 @@
   function next(reason) {
     if (cleanup) { cleanup(); cleanup = null; }
     if (!gotData) failures++;
-    // a source that never delivered twice in a row -> try the next one; working source just reconnects
+    // a source that never delivered twice in a row -> try the next one; a working source just reconnects
     if (failures >= 2) { failures = 0; idx = (idx + 1) % ORDER.length; }
     gotData = false;
     const delay = Math.min(15000, 1500 * Math.max(1, failures));
@@ -210,7 +216,12 @@
   });
 
   // ?demo=1 -> sample numbers only, no network (layout check / screenshots). Never use on stream.
-  if (params.get("demo")) { update("BTC", 58714.01, -2.85); update("ETH", 1644.68, 1.12); render(); return; }
+  if (params.get("demo")) {
+    const big = params.get("demo") === "big";
+    update("BTC", big ? 1234567.89 : 58714.01, -2.85); update("ETH", big ? 12345.67 : 1644.68, 1.12);
+    document.fonts.ready.then(render);
+    return;
+  }
 
   document.fonts.ready.then(start);
 })();
