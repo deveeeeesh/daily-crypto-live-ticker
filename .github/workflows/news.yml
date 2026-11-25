@@ -1,0 +1,37 @@
+name: Update crypto news
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # every 10 min (GitHub may run it a few minutes late)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch BTC / ETH headlines
+        run: node scripts/fetch-news.mjs
+      - name: Commit news.json if it changed
+        run: |
+          if git diff --quiet -- news.json; then
+            echo "No new headlines"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news.json
+          git commit -m "news: update headlines"
+          git pull --rebase --autostash
+          git push

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily Crypto — BTC/ETH News Strip</title>
+<meta name="viewport" content="width=1920,height=1080">
+<style>
+  /* OBS Browser Source: 1920x1080, transparent, position 0,0.
+     Strip sits on the golden-line lane between the display capture (ends y=908) and the CRYPTO LIVE ticker (starts y=996). */
+  @font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+  :root { --off:#F4F4F2; --gold:#F5B731; --red:#EF4444; --btc:#F7931A; --eth:#8C9EFF; --muted:#8A8C92; --black:#0A0B0D; }
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+  body.bg { background-size: 1920px 1080px; background-repeat: no-repeat; }
+
+  #band {
+    position: absolute; left: 0; top: 922px; width: 1920px; height: 64px; overflow: hidden;
+    background: linear-gradient(180deg, transparent 0%, rgba(10,11,13,.78) 22%, rgba(10,11,13,.78) 78%, transparent 100%);
+    transition: background .6s ease; opacity: 0;
+  }
+  #band.ready { opacity: 1; transition: opacity .8s ease, background .6s ease; }
+  #band.flash { background: linear-gradient(180deg, transparent 0%, rgba(44,12,12,.86) 22%, rgba(44,12,12,.86) 78%, transparent 100%); }
+  #sweep { position: absolute; top: 10px; bottom: 10px; left: -300px; width: 260px; transform: skewX(-20deg); pointer-events: none;
+           background: linear-gradient(90deg, transparent, rgba(245,183,49,.30), transparent); opacity: 0; }
+  #band.flash #sweep { opacity: 1; animation: sweep 1.6s ease-in-out 3; }
+  @keyframes sweep { from { left: -300px; } to { left: 1940px; } }
+
+  .slide { position: absolute; left: 24px; right: 24px; top: 0; height: 56px; display: flex; align-items: center; gap: 16px;
+           transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s ease; }
+  .slide.enter { transform: translateY(22px); opacity: 0; }
+  .slide.leave { transform: translateY(-22px); opacity: 0; }
+
+  .chip { font-family: Inter; font-weight: 900; font-size: 13px; letter-spacing: 2.6px; padding: 6px 11px 6px 9px; border-radius: 6px;
+          display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .chip.news { background: rgba(244,244,242,.08); color: #cfd0d3; border: 1px solid rgba(244,244,242,.18); }
+  .chip.news .dot { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+  .chip.brk { background: var(--red); color: #fff; box-shadow: 0 0 18px rgba(239,68,68,.55); border: 1px solid transparent; }
+  .chip.brk .dot { background: #fff; box-shadow: 0 0 8px #fff; animation: blink 1s steps(2, start) infinite; }
+  #band.flash .chip.brk { animation: pulse 1s ease-in-out infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+  @keyframes pulse { 50% { box-shadow: 0 0 30px rgba(239,68,68,.95); } }
+
+  .coin { font-family: Inter; font-weight: 900; font-size: 12px; letter-spacing: 2px; padding: 3px 7px; border-radius: 4px; border: 1.5px solid; flex-shrink: 0; }
+  .coin.BTC { color: var(--btc); border-color: rgba(247,147,26,.6); }
+  .coin.ETH { color: var(--eth); border-color: rgba(140,158,255,.6); }
+  .hl { font-family: Inter; font-weight: 650; font-size: 26px; color: var(--off); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  #band.flash .hl { text-shadow: 0 0 18px rgba(255,255,255,.35); }
+  .meta { font-family: Inter; font-weight: 600; font-size: 16px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .count { margin-left: auto; padding-left: 16px; font-family: Inter; font-weight: 700; font-size: 13px; letter-spacing: 2px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .count.new { color: var(--red); }
+
+  #timer { position: absolute; left: 24px; right: 24px; bottom: 6px; height: 2px; background: rgba(245,183,49,.15); border-radius: 2px; }
+  #timer i { display: block; height: 100%; width: 0; background: var(--gold); border-radius: 2px; box-shadow: 0 0 8px var(--gold); }
+  #band.flash #timer i { background: var(--red); box-shadow: 0 0 8px var(--red); }
+</style>
+</head>
+<body>
+<div id="band"><div id="sweep"></div><div id="timer"><i></i></div></div>
+
+<script>
+(() => {
+  "use strict";
+  const params = new URLSearchParams(location.search);
+  if (params.get("bg")) { document.body.classList.add("bg"); document.body.style.backgroundImage = `url("${params.get("bg")}")`; }
+
+  const HOLD_MS = +(params.get("hold") || 8000);   // time each headline stays on screen
+  const FLASH_HOLD_MS = HOLD_MS + 4000;             // a new (breaking) headline stays longer
+  const BREAKING_MIN = 30;                          // headlines younger than this get the BREAKING chip
+  const POLL_MS = 120000;                           // check for new headlines every 2 min
+  const MAX_FLASH_PER_POLL = 3;
+  const FALLBACK = [ // shown only if there is no news at all
+    "Ask your questions in chat", "Live Bitcoin & Ethereum prices, 24/7", "Trade updates on Telegram",
+  ];
+  const onPages = location.hostname.endsWith("github.io");
+  const SOURCES = onPages
+    ? ["https://raw.githubusercontent.com/deveeeeesh/daily-crypto-live-ticker/main/news.json", "news.json"]
+    : ["news.json"];
+
+  const band = document.getElementById("band"), bar = document.querySelector("#timer i");
+  const LS_SEEN = "dcNewsSeen", LS_CACHE = "dcNewsCache";
+  const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+  const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+  let list = load(LS_CACHE, []);          // newest first
+  let seen = new Set(load(LS_SEEN, []));
+  const firstRunEver = seen.size === 0;
+  const flashQueue = [];
+  let idx = 0, current = null, shownAt = 0, holdTimer = null;
+
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const ageMin = (it) => (Date.now() - Date.parse(it.published)) / 60000;
+  function ago(it) {
+    const m = Math.max(0, Math.round(ageMin(it)));
+    if (m < 2) return "just now";
+    if (m < 60) return m + "m ago";
+    const h = Math.round(m / 60);
+    return h < 48 ? h + "h ago" : Math.round(h / 24) + "d ago";
+  }
+
+  function slideHTML(it, isFlash) {
+    if (it.fallback) {
+      return `<span class="chip news"><span class="dot"></span>DAILY CRYPTO</span><span class="hl">${esc(it.title)}</span>`;
+    }
+    const brk = isFlash || ageMin(it) < BREAKING_MIN;
+    const coins = (it.coins || []).map((c) => `<span class="coin ${c}">${c}</span>`).join("");
+    const count = isFlash ? `<span class="count new">NEW</span>` : `<span class="count">${(list.indexOf(it) + 1)} / ${list.length}</span>`;
+    return `<span class="chip ${brk ? "brk" : "news"}"><span class="dot"></span>${brk ? "BREAKING" : "CRYPTO NEWS"}</span>${coins}` +
+           `<span class="hl">${esc(it.title)}</span><span class="meta">· ${esc(it.source)} · ${ago(it)}</span>${count}`;
+  }
+
+  // shrink long headlines (26px down to 20px) before falling back to "…"
+  function fit(slide) {
+    const hl = slide.querySelector(".hl");
+    for (let size = 26; size >= 20 && hl.scrollWidth > hl.clientWidth; size--) hl.style.fontSize = size + "px";
+  }
+
+  function show(it, isFlash) {
+    const old = band.querySelector(".slide:not(.leave)");
+    if (old) { old.classList.add("leave"); setTimeout(() => old.remove(), 500); }
+    const s = document.createElement("div");
+    s.className = "slide enter";
+    s.innerHTML = slideHTML(it, isFlash);
+    band.appendChild(s);
+    fit(s);
+    requestAnimationFrame(() => requestAnimationFrame(() => s.classList.remove("enter")));
+    band.classList.toggle("flash", isFlash);
+    band.classList.add("ready");
+
+    const hold = isFlash ? FLASH_HOLD_MS : HOLD_MS;
+    bar.style.transition = "none"; bar.style.width = "0";
+    void bar.offsetWidth;
+    bar.style.transition = `width ${hold}ms linear`; bar.style.width = "100%";
+
+    current = it; shownAt = Date.now();
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(nextSlide, hold);
+  }
+
+  function nextSlide() {
+    if (flashQueue.length) return show(flashQueue.shift(), true);
+    if (!list.length) {
+      const f = FALLBACK[idx++ % FALLBACK.length];
+      return show({ title: f, fallback: true }, false);
+    }
+    if (idx >= list.length) idx = 0;
+    show(list[idx++], false);
+  }
+
+  function ingest(items) {
+    if (!Array.isArray(items) || !items.length) return;
+    items = items.slice().sort((a, b) => Date.parse(b.published) - Date.parse(a.published));
+    const fresh = items.filter((it) => !seen.has(it.id));
+    for (const it of items) seen.add(it.id);
+    save(LS_SEEN, [...seen].slice(-400));
+    const wasEmpty = !list.length;
+    list = items; save(LS_CACHE, list);
+    // keep the rotation going from where it was, in the new order
+    const at = current ? list.findIndex((it) => it.id === current.id) : -1;
+    idx = at >= 0 ? at + 1 : Math.min(idx, list.length);
+
+    if (!firstRunEver || !wasEmpty) {
+      // new headlines that are still recent get flashed (newest first, max 3)
+      const flashes = fresh.filter((it) => ageMin(it) < BREAKING_MIN * 4).slice(0, MAX_FLASH_PER_POLL);
+      flashQueue.push(...flashes);
+      // cut in right away if the current headline has had at least 3 s
+      if (flashes.length && current && !band.classList.contains("flash") && Date.now() - shownAt > 3000) nextSlide();
+    }
+    if (!current) nextSlide();
+  }
+
+  async function poll() {
+    for (const base of SOURCES) {
+      try {
+        const r = await fetch(base + (base.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const j = await r.json();
+        ingest(j.items);
+        return;
+      } catch (e) { console.log("[news] " + base + " failed: " + e.message); }
+    }
+    if (!current) nextSlide(); // nothing loaded: show cached list or fallback lines
+  }
+
+  window.__news = { get list() { return list; }, get current() { return current; }, flashQueue, ingest };
+
+  // ---------- demo / test modes ----------
+  const demo = params.get("demo");
+  if (demo) {
+    const t = (min) => new Date(Date.now() - min * 60000).toISOString();
+    const sample = [
+      { id: "d1", title: "Bitcoin ETFs near $5B in record monthly outflows amid AI stock rout", source: "Cointelegraph", published: t(74), coins: ["BTC"] },
+      { id: "d2", title: "Ethereum Foundation doubles protocol security team ahead of overhaul", source: "Cointelegraph", published: t(95), coins: ["ETH"] },
+      { id: "d3", title: "Bitcoin, ether get CFTC staff nod for expense requirements, Ethereum Foundation doubles security team, and more updates from the week", source: "The Block", published: t(300), coins: ["BTC", "ETH"] },
+    ];
+    seen = new Set(sample.map((s) => s.id)); list = [];
+    document.fonts.ready.then(() => {
+      ingest(sample);
+      const breaking = { id: "d9", title: "Bitcoin reclaims $60K as ETF inflows return", source: "Decrypt", published: t(3), coins: ["BTC"] };
+      if (demo === "flash") { ingest([breaking, ...sample]); nextSlide(); }
+      else if (demo === "long") show(list.find((s) => s.id === "d3"), false);
+      else setTimeout(() => ingest([breaking, ...sample]), 5000);
+    });
+    return;
+  }
+
+  document.fonts.ready.then(() => {
+    if (list.length) nextSlide(); // start from cache instantly, refresh below
+    poll();
+    setInterval(poll, POLL_MS);
+  });
+})();
+</script>
+</body>
+</html>
