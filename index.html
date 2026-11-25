@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily Crypto — Live BTC/ETH Price Bar</title>
+<meta name="viewport" content="width=1920,height=1080">
+<style>
+  /* OBS Browser Source: 1920x1080, transparent. Bar sits in the gap between display capture (ends y=908) and the gold ticker (starts y=996). */
+  @font-face { font-family: "Anton"; src: url("fonts/Anton.ttf") format("truetype"); font-display: block; }
+  @font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+  :root {
+    --black: #0A0B0D; --off: #F4F4F2; --gold: #F5B731; --deep: #C98A12;
+    --green: #22C55E; --red: #EF4444; --btc: #F7931A; --eth: #8C9EFF; --muted: #8A8C92;
+  }
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+  body.bg { background-size: 1920px 1080px; background-repeat: no-repeat; }
+  #bar {
+    position: absolute; left: 460px; top: 920px; width: 1436px; height: 64px; box-sizing: border-box;
+    display: flex; align-items: stretch; border-radius: 14px; overflow: hidden;
+    background: linear-gradient(180deg, rgba(28,26,20,0.94), rgba(10,11,13,0.96));
+    border: 2px solid rgba(245,183,49,0.75); box-shadow: 0 0 22px rgba(245,183,49,0.18), 0 10px 30px rgba(0,0,0,0.5);
+    opacity: 0; transition: opacity .6s ease;
+  }
+  #bar.ready { opacity: 1; }
+  .coin { flex: 1; display: flex; align-items: center; gap: 18px; padding: 0 26px 0 0; position: relative; }
+  .coin + .coin { border-left: 2px solid rgba(245,183,49,0.35); }
+  .stripe { width: 8px; align-self: stretch; }
+  .glyph {
+    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: "Inter"; font-weight: 900; font-size: 24px; color: var(--black); margin-left: 10px; flex-shrink: 0;
+  }
+  .name { font-family: "Anton"; font-size: 30px; letter-spacing: 1px; color: var(--off); line-height: 1; }
+  .pair { font-family: "Inter"; font-weight: 800; font-size: 13px; letter-spacing: 2.5px; color: var(--muted); margin-top: 4px; }
+  .label { display: flex; flex-direction: column; }
+  .price {
+    margin-left: auto; font-family: "Inter"; font-weight: 800; font-size: 38px; color: var(--off);
+    font-variant-numeric: tabular-nums; letter-spacing: -0.5px; padding: 2px 10px; border-radius: 8px;
+    transition: color .9s ease, background-color .9s ease;
+  }
+  .price.up   { color: var(--green); background-color: rgba(34,197,94,0.14); transition: none; }
+  .price.down { color: var(--red);   background-color: rgba(239,68,68,0.14); transition: none; }
+  .chg {
+    font-family: "Inter"; font-weight: 800; font-size: 20px; font-variant-numeric: tabular-nums;
+    padding: 6px 12px; border-radius: 999px; min-width: 118px; text-align: center; box-sizing: border-box;
+  }
+  .chg.pos { color: var(--green); background: rgba(34,197,94,0.14); border: 1.5px solid rgba(34,197,94,0.5); }
+  .chg.neg { color: var(--red);   background: rgba(239,68,68,0.14); border: 1.5px solid rgba(239,68,68,0.5); }
+  .chg-cap { font-family: "Inter"; font-weight: 700; font-size: 11px; letter-spacing: 2px; color: var(--muted); text-align: center; margin-top: 3px; }
+  #status {
+    position: absolute; right: 12px; top: -11px; font-family: "Inter"; font-weight: 800; font-size: 11px; letter-spacing: 2px;
+    color: var(--black); background: var(--gold); padding: 3px 8px; border-radius: 6px; display: none;
+  }
+  #bar.stale .price, #bar.stale .chg { opacity: .45; }
+  #bar.stale #status { display: block; }
+</style>
+</head>
+<body>
+<div id="bar">
+  <div class="coin" id="BTC">
+    <div class="stripe" style="background: var(--btc)"></div>
+    <div class="glyph" style="background: var(--btc)">₿</div>
+    <div class="label"><div class="name">BITCOIN</div><div class="pair">BTC / USD</div></div>
+    <div class="price">—</div>
+    <div><div class="chg pos">—</div><div class="chg-cap">24H</div></div>
+  </div>
+  <div class="coin" id="ETH">
+    <div class="stripe" style="background: var(--eth)"></div>
+    <div class="glyph" style="background: var(--eth)">Ξ</div>
+    <div class="label"><div class="name">ETHEREUM</div><div class="pair">ETH / USD</div></div>
+    <div class="price">—</div>
+    <div><div class="chg pos">—</div><div class="chg-cap">24H</div></div>
+  </div>
+  <div id="status">UPDATING…</div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const params = new URLSearchParams(location.search);
+  if (params.get("bg")) { document.body.classList.add("bg"); document.body.style.backgroundImage = `url("${params.get("bg")}")`; }
+  const forceSource = params.get("source"); // optional: binance | coinbase | coingecko (for testing)
+
+  // ---------- state + render ----------
+  const STALE_MS = 60000;        // dim + "UPDATING…" if no fresh price for 60 s
+  const SILENT_RECONNECT_MS = 20000; // a live socket silent for 20 s gets reopened
+  const state = { BTC: { price: null, chg: null, shown: null }, ETH: { price: null, chg: null, shown: null } };
+  let lastUpdate = 0;
+  const bar = document.getElementById("bar");
+  const fmt = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  function update(sym, price, chg) {
+    if (!state[sym] || !isFinite(price) || price <= 0) return;
+    state[sym].price = price;
+    if (isFinite(chg)) state[sym].chg = chg;
+    lastUpdate = Date.now();
+  }
+
+  // render at most 4x per second so fast feeds (Coinbase sends every trade) stay cheap
+  function render() {
+    for (const sym of ["BTC", "ETH"]) {
+      const s = state[sym];
+      if (s.price == null) continue;
+      const el = document.getElementById(sym);
+      const priceEl = el.querySelector(".price");
+      const text = "$" + fmt.format(s.price);
+      if (text !== priceEl.textContent) {
+        if (s.shown != null && s.price !== s.shown) {
+          const dir = s.price > s.shown ? "up" : "down";
+          priceEl.classList.remove("up", "down");
+          void priceEl.offsetWidth; // restart the flash
+          priceEl.classList.add(dir);
+          clearTimeout(priceEl._t);
+          priceEl._t = setTimeout(() => priceEl.classList.remove("up", "down"), 350);
+        }
+        priceEl.textContent = text;
+        s.shown = s.price;
+      }
+      if (s.chg != null) {
+        const c = el.querySelector(".chg");
+        const pos = s.chg >= 0;
+        const t = (pos ? "▲ +" : "▼ −") + Math.abs(s.chg).toFixed(2) + "%";
+        if (c.textContent !== t) { c.textContent = t; c.className = "chg " + (pos ? "pos" : "neg"); }
+      }
+    }
+    if (state.BTC.price != null && state.ETH.price != null) bar.classList.add("ready");
+    bar.classList.toggle("stale", lastUpdate > 0 && Date.now() - lastUpdate > STALE_MS);
+  }
+  setInterval(render, 250);
+
+  // ---------- sources (tried in order, rotate on failure) ----------
+  const SOURCES = {
+    binance: {
+      kind: "ws",
+      url: "wss://data-stream.binance.vision/stream?streams=btcusdt@ticker/ethusdt@ticker",
+      onMessage(msg) {
+        const d = msg.data; if (!d || !d.s) return;
+        const sym = d.s === "BTCUSDT" ? "BTC" : d.s === "ETHUSDT" ? "ETH" : null;
+        if (sym) update(sym, parseFloat(d.c), parseFloat(d.P));
+      },
+    },
+    coinbase: {
+      kind: "ws",
+      url: "wss://ws-feed.exchange.coinbase.com",
+      onOpen(ws) { ws.send(JSON.stringify({ type: "subscribe", product_ids: ["BTC-USD", "ETH-USD"], channels: ["ticker"] })); },
+      onMessage(d) {
+        if (d.type !== "ticker") return;
+        const sym = d.product_id === "BTC-USD" ? "BTC" : d.product_id === "ETH-USD" ? "ETH" : null;
+        const p = parseFloat(d.price), o = parseFloat(d.open_24h);
+        if (sym) update(sym, p, o > 0 ? ((p - o) / o) * 100 : NaN);
+      },
+    },
+    coingecko: {
+      kind: "poll",
+      every: 30000,
+      async fetchOnce() {
+        const r = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true", { cache: "no-store" });
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const j = await r.json();
+        update("BTC", j.bitcoin.usd, j.bitcoin.usd_24h_change);
+        update("ETH", j.ethereum.usd, j.ethereum.usd_24h_change);
+      },
+    },
+  };
+  const ORDER = forceSource && SOURCES[forceSource] ? [forceSource] : ["binance", "coinbase", "coingecko"];
+  let idx = 0, failures = 0, cleanup = null, gotData = false;
+  window.__ticker = { state, get source() { return ORDER[idx]; } }; // for debugging in a browser console
+
+  function next(reason) {
+    if (cleanup) { cleanup(); cleanup = null; }
+    if (!gotData) failures++;
+    // a source that never delivered twice in a row -> try the next one; working source just reconnects
+    if (failures >= 2) { failures = 0; idx = (idx + 1) % ORDER.length; }
+    gotData = false;
+    const delay = Math.min(15000, 1500 * Math.max(1, failures));
+    console.log(`[ticker] ${reason} -> ${ORDER[idx]} in ${delay} ms`);
+    setTimeout(start, delay);
+  }
+
+  function start() {
+    const name = ORDER[idx], src = SOURCES[name];
+    if (src.kind === "ws") {
+      let ws, alive = Date.now(), dead = false;
+      try { ws = new WebSocket(src.url); } catch (e) { return next(name + " ctor error"); }
+      ws.onopen = () => { console.log("[ticker] connected:", name); if (src.onOpen) src.onOpen(ws); };
+      ws.onmessage = (ev) => {
+        alive = Date.now();
+        try { src.onMessage(JSON.parse(ev.data)); gotData = true; failures = 0; } catch (e) {}
+      };
+      const finish = (why) => { if (dead) return; dead = true; next(name + " " + why); };
+      ws.onclose = () => finish("closed");
+      ws.onerror = () => finish("error");
+      const watchdog = setInterval(() => { if (Date.now() - alive > SILENT_RECONNECT_MS) finish("silent"); }, 5000);
+      cleanup = () => { dead = true; clearInterval(watchdog); ws.onclose = ws.onerror = ws.onmessage = null; try { ws.close(); } catch (e) {} };
+    } else {
+      let stopped = false, timer = null;
+      const tick = async () => {
+        if (stopped) return;
+        try { await src.fetchOnce(); gotData = true; failures = 0; timer = setTimeout(tick, src.every); }
+        catch (e) { if (!stopped) { stopped = true; next(name + " " + e.message); } }
+      };
+      cleanup = () => { stopped = true; clearTimeout(timer); };
+      console.log("[ticker] polling:", name);
+      tick();
+    }
+  }
+
+  // also wake up if the page was throttled/hidden and is now stale
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && lastUpdate && Date.now() - lastUpdate > SILENT_RECONNECT_MS) next("resume");
+  });
+
+  // ?demo=1 -> sample numbers only, no network (layout check / screenshots). Never use on stream.
+  if (params.get("demo")) { update("BTC", 58714.01, -2.85); update("ETH", 1644.68, 1.12); render(); return; }
+
+  document.fonts.ready.then(start);
+})();
+</script>
+</body>
+</html>
