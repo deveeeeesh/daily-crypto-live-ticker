@@ -1,6 +1,177 @@
 {
- "updated": "2026-11-25T13:18:05.097Z",
+ "updated": "2026-11-25T22:38:52.603Z",
  "items": [
+  {
+   "id": "47c28c8fffa3",
+   "title": "Matt Hougan: $1.6 MILLION Bitcoin Price Target “Conservative”",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/videos/matt-hougan-1-6-million-bitcoin-price-target-conservative",
+   "published": "2026-11-25T21:22:24.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "a5bd5e5789a7",
+   "title": "Another Bitcoin Mining Firm Flags 'Hashrate Hijacking' Attacks That Reroute Rewards",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/383999/another-bitcoin-mining-firm-hashrate-hijacking-attacks",
+   "published": "2026-11-25T20:36:03.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "4a9481385131",
+   "title": "Strategic Bitcoin Reserve Bill Clears House Committee, Heads to Floor",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/news/strategic-bitcoin-reserve-bill-house-floor",
+   "published": "2026-11-25T19:50:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "036bbd2b9279",
+   "title": "Bitcoin miners hit by hashrate hijacking attack exploiting unencrypted connections",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/ecosystems/2026-11-25-bitcoin-miners-hit-hashrate-hijacking-attack-exploiting-unencrypted-connections-446723",
+   "published": "2026-11-25T19:37:10.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "7ae5339ef9c4",
+   "title": "Ethereum Foundation backs Keccak-256 to counter quantum, AI threats",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/news/ethereum-foundation-keccak-256-counter-quantum-ai-threats?utm_source=rss_feed&utm_medium=rss_tag_ethereum&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-25T18:54:51.000Z",
+   "coins": [
+    "ETH"
+   ]
+  },
+  {
+   "id": "5f570c6d04bb",
+   "title": "Bitcoin falls toward $57K amid US tariff fears, hot PCE data as Nasdaq drops 4%",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/bitcoin-falls-57k-us-tariff-pce-data-nasdaq-drops?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-25T17:33:22.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "dad279e5b774",
+   "title": "Bitcoin falls below $58,000 as CoinShares’ Butterfill sees ‘tail end of the bear market’",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-25-bitcoin-falls-below-58000-coinshares-butterfill-sees-tail-end-bear-market-446678",
+   "published": "2026-11-25T17:26:55.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "4d555c373db5",
+   "title": "HRF Announces Funding of Seven Bitcoin Projects for People Living Under Authoritarian Regimes",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/news/hrf-bitcoin-development-seven-projects",
+   "published": "2026-11-25T17:22:30.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "3b83251582a4",
+   "title": "Elon Musk’s X Wins Court Judgment Against Alleged Bitcoin Bot Farm Operators",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/383985/elon-musk-x-court-judgment-bitcoin-bot-farm-operators",
+   "published": "2026-11-25T17:16:02.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "a4b7e2126569",
+   "title": "CleanSpark Weighs Selling More Bitcoin Than It Mines After $987M Loss",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/news/cleanspark-987-million-loss-fiscal-2026",
+   "published": "2026-11-25T17:13:10.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "6bc32a4fa51b",
+   "title": "Hyperliquid’s HYPE will join bitcoin, ether and more in Franklin Templeton’s crypto ETF",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-25-franklin-templeton-ezpz-etf-adds-hyperliquid-hype-446686",
+   "published": "2026-11-25T16:54:15.000Z",
+   "coins": [
+    "BTC",
+    "ETH"
+   ]
+  },
+  {
+   "id": "966b8892664e",
+   "title": "Bitcoin Falls Further as Inflation, Trump Tariffs and AI Selloff Rattle Markets",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/383967/bitcoin-sinks-inflation-trump-tariffs-ai-selloff",
+   "published": "2026-11-25T16:52:50.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "f351d1f3b398",
+   "title": "Next Technology (NXTT) Sells 500 Bitcoin to Fund AI Push",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/news/next-technology-nxtt-sells-500-bitcoin",
+   "published": "2026-11-25T15:30:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "6acbc35f1ef6",
+   "title": "Square’s NATIONWIDE Bitcoin Payments Rollout: What People Are Actually Buying",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/videos/squares-nationwide-bitcoin-payments-rollout-what-people-are-actually-buying",
+   "published": "2026-11-25T15:15:01.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "47fe8bc33534",
+   "title": "Bitcoin Price Slumps Below $57,500 as Nasdaq Sinks 4% at Open",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/markets/bitcoin-price-falls-57500-nasdaq",
+   "published": "2026-11-25T14:54:01.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "867fe3400c87",
+   "title": "Bit Digital repays $50 million to Galaxy after selling 29,825 ETH",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/business/2026-11-25-bit-digital-repays-50-million-to-galaxy-after-selling-29825-eth-446164",
+   "published": "2026-11-25T14:15:44.000Z",
+   "coins": [
+    "ETH"
+   ]
+  },
+  {
+   "id": "24a1adc14dbf",
+   "title": "Morning Minute: Ethereum Focuses on Security As AI Threats Rise",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/383945/morning-minute-ethereum-focuses-on-security-as-ai-threats-rise",
+   "published": "2026-11-25T13:41:38.000Z",
+   "coins": [
+    "ETH"
+   ]
+  },
   {
    "id": "08df3cf4f598",
    "title": "UniCredit offers bitcoin exposure to Italian retail clients with capital protection at maturity",
@@ -128,177 +299,6 @@
    "source": "Bitcoin Magazine",
    "link": "https://bitcoinmagazine.com/videos/escape-velocity-coming-for-bitcoin-with-repeat-of-2017-cycle-michael-van-de-poppe",
    "published": "2026-11-24T21:15:30.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "f35dd9116138",
-   "title": "Ethereum Foundation Says AI Is a More Urgent Threat Than Quantum Computing",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383927/ethereum-foundation-ai-more-urgent-threat-quantum-computing",
-   "published": "2026-11-24T20:36:02.000Z",
-   "coins": [
-    "ETH"
-   ]
-  },
-  {
-   "id": "3c3a8ebd0d40",
-   "title": "André Dragosch: Bitcoin at “Fire Sale” Valuations Heading Into Fed Pivot",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/andre-dragosch-bitcoin-at-fire-sale-valuations-heading-into-fed-pivot",
-   "published": "2026-11-24T20:20:57.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "776cd26dad55",
-   "title": "Bitcoin Lender Ledn Moves US Clients Onshore With New Custody Accounts",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/news/ledn-launches-us-custody-accounts",
-   "published": "2026-11-24T20:15:19.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "6337b0c7fedd",
-   "title": "Bitcoin sell-off driven by weak demand, forced liquidations: 21Shares",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/news/bitcoin-selloff-weak-demand-forced-liquidations-21shares?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-24T19:44:23.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "cbbdcb8f0e64",
-   "title": "Bitcoin Losses Are the Worst Since FTX. Is the Bottom Near?",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383909/bitcoin-losses-worst-since-ftx-is-bottom-near",
-   "published": "2026-11-24T19:35:32.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "424ce66dd5b8",
-   "title": "Inside the UAE’s $1.5 Billion Bitcoin & Real Estate Play",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/inside-the-uaes-1-5-billion-bitcoin-real-estate-play",
-   "published": "2026-11-24T19:34:31.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "4d30a04b5edf",
-   "title": "Anchorage Digital Sets Up Asset Manager to Offer Bitcoin Yield to Clients",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/news/anchorage-digital-bitcoin-yield-asset-manager",
-   "published": "2026-11-24T18:38:01.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "ccec98da7686",
-   "title": "Payward’s Krak plans early 2027 launch of US credit cards with bitcoin cashback, including one secured by USDC",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/business/2026-11-24-kraken-krak-early-2027-launch-us-credit-cards-bitcoin-cashback-usdc-collateral-445498",
-   "published": "2026-11-24T18:35:02.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "bc98fab0f627",
-   "title": "Bitcoin slides amid US tariff nerves as Anthropic falls below IPO price",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/markets/bitcoin-slides-us-tariff-nerves-anthropic-falls-ipo-price?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-24T17:09:11.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "e968421c7612",
-   "title": "Coldcard Postmortem Says Weak Seeds, Not Hacked Devices, Drove Bitcoin Thefts",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/news/coldcard-postmortem-seed-flaw",
-   "published": "2026-11-24T16:20:00.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "19f0976ee95c",
-   "title": "Stacks Opens Bond 4 With 1,050 BTC of Bitcoin Staking Capacity",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/press-releases/stacks-opens-bond-4-with-1050-btc-of-bitcoin-staking-capacity",
-   "published": "2026-11-24T16:03:03.000Z",
-   "coins": [
-    "BTC",
-    "ETH"
-   ]
-  },
-  {
-   "id": "c1435bcee59f",
-   "title": "Ethereum treasury firm BTCS sells $43.8 million in ETH to cut Aave debt, CEO says ‘we do not take this lightly’",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/business/2026-11-24-ethereum-treasury-firm-btcs-sells-43-8-million-eth-cut-aave-debt-ceo-says-we-do-not-take-this-lightly-445562",
-   "published": "2026-11-24T15:27:50.000Z",
-   "coins": [
-    "ETH"
-   ]
-  },
-  {
-   "id": "78e16eb4e825",
-   "title": "Global Debt Will Make Bitcoin the Best Performing Asset in the World",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/global-debt-will-make-bitcoin-the-best-performing-asset-in-the-world",
-   "published": "2026-11-24T15:00:05.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "dd9a4849b968",
-   "title": "UniCredit Opens Bitcoin to Italian Savers, Capping Gains at 65%",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/news/unicredit-bitcoin-certificate-italy",
-   "published": "2026-11-24T14:58:09.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "e12efc5245a5",
-   "title": "Bitcoin ETFs see another $570 million in net outflows as November total nears $5 billion and BTC dips below $60K",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/markets/2026-11-24-bitcoin-etfs-another-570-million-net-outflows-november-total-nears-5-billion-btc-dips-below-60k-445548",
-   "published": "2026-11-24T14:32:21.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "4b2ae5c8dd47",
-   "title": "Grayscale calls Bitcoin ‘oversold’ at $62K but warns of AI risks",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/markets/bitcoin-oversold-ai-risks-grayscale?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-24T13:11:44.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "e96ce7026646",
-   "title": "$14.7B in ‘Lost’ Bitcoin Has Moved Since 2018: Report",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383854/14-7b-in-lost-bitcoin-has-moved-since-2018-report",
-   "published": "2026-11-24T12:40:47.000Z",
    "coins": [
     "BTC"
    ]
