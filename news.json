@@ -1,6 +1,36 @@
 {
- "updated": "2026-11-25T22:38:52.603Z",
+ "updated": "2026-11-26T04:22:32.253Z",
  "items": [
+  {
+   "id": "6c3de7af4264",
+   "title": "House Committee advances Strategic Bitcoin Reserve bill with narrow path to passage",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/regulation/2026-11-25-house-committee-advances-strategic-bitcoin-reserve-bill-446778",
+   "published": "2026-11-26T03:03:01.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "1468fb83d4aa",
+   "title": "Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it",
+   "published": "2026-11-25T23:30:12.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "6ce80cfd933e",
+   "title": "Stanford Professor Reveals “Praxis” Bitcoin Cryptography Breakthrough",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/videos/stanford-professor-reveals-praxis-bitcoin-cryptography-breakthrough",
+   "published": "2026-11-25T22:15:26.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
   {
    "id": "47c28c8fffa3",
    "title": "Matt Hougan: $1.6 MILLION Bitcoin Price Target “Conservative”",
@@ -269,36 +299,6 @@
    "source": "Bitcoin Magazine",
    "link": "https://bitcoinmagazine.com/videos/bitcoin-faces-6-year-moving-average-test-only-seen-during-ftx-collapse",
    "published": "2026-11-24T22:30:03.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "9bbd31946bf7",
-   "title": "Bitcoin miner CleanSpark swings to $987 million annual loss as BTC production declines",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/business/2026-11-24-bitcoin-miner-cleanspark-swings-987-million-annual-loss-btc-production-declines-446061",
-   "published": "2026-11-24T22:10:45.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "fa7c068b0c6d",
-   "title": "Coldcard Bitcoin Exploit, Revisited: How a Hidden Flaw Survived Years of Audits",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383930/coldcard-bitcoin-exploit-how-hidden-flaw-survived-years-audits",
-   "published": "2026-11-24T21:16:02.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "0bf4b6278f2a",
-   "title": "“Escape Velocity” Coming for Bitcoin with Repeat of 2017 Cycle | Michaël van de Poppe",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/escape-velocity-coming-for-bitcoin-with-repeat-of-2017-cycle-michael-van-de-poppe",
-   "published": "2026-11-24T21:15:30.000Z",
    "coins": [
     "BTC"
    ]
