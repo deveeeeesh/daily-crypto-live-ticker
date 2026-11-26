@@ -1,6 +1,96 @@
 {
- "updated": "2026-11-26T04:22:32.253Z",
+ "updated": "2026-11-26T14:09:20.103Z",
  "items": [
+  {
+   "id": "43f46101a86d",
+   "title": "7 bizarre things crypto whales spent a fortune on",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/magazine/7-bizarre-things-crypto-whales-spent-a-fortune-on?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-26T13:30:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "2158e7bb2441",
+   "title": "Galaxy Research Withdraws Call That Bitcoin's Bear Market Is Over",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/384030/galaxy-research-withdraws-call-that-bitcoins-bear-market-is-over",
+   "published": "2026-11-26T12:26:08.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "2d43e5249e29",
+   "title": "Bitcoin price eyes $61K as Talos warns of thin Thanksgiving liquidity",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/bitcoin-price-talos-warns-thin-thanksgiving-liquidity?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-26T11:22:59.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "8924048964a9",
+   "title": "Bitcoin ETF November outflows top $5B, Morgan Stanley bucks trend",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/morgan-stanley-bitcoin-etf-trend-outflows-november?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-26T09:42:34.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "3f4324e4b0e8",
+   "title": "Switzerland’s first spot Bitcoin ETF ticks up 0.6% in opening hour",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/bit-debuts-switzerlands-first-spot-bitcoin-etf?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-26T09:18:15.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "5ad06997f1a1",
+   "title": "Spot bitcoin ETFs on track for worst month on record as bear market drags on",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-26-spot-bitcoin-etfs-worst-month-november-446814",
+   "published": "2026-11-26T08:50:46.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "c301068e070d",
+   "title": "Europe’s only spot bitcoin ETF starts trading in Switzerland, BIT says",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-26-swiss-bitcoin-etf-bbit-begins-trading-europes-only-446724",
+   "published": "2026-11-26T06:30:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "7605d5c2f1c3",
+   "title": "Fidelity files for Chainlink ETF, Musk’s X wins ruling in alleged bitcoin content-farm case, and more",
+   "source": "The Block",
+   "link": "https://www.theblock.co/newsletters/the-daily/2026-11-26-fidelity-chainlink-etf-musk-x-ruling-alleged-bitcoin-content-farm-case-more-crypto-news-446755",
+   "published": "2026-11-26T05:45:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "3f2f08021771",
+   "title": "Galaxy walks back bitcoin’s June-bottom call, warns of deeper losses below $58,525",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-26-galaxy-walks-back-bitcoin-bottom-call-446786",
+   "published": "2026-11-26T05:16:11.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
   {
    "id": "6c3de7af4264",
    "title": "House Committee advances Strategic Bitcoin Reserve bill with narrow path to passage",
@@ -208,97 +298,6 @@
    "source": "The Block",
    "link": "https://www.theblock.co/news/business/2026-11-25-unicredit-offers-bitcoin-exposure-to-italian-retail-clients-with-capital-protection-at-maturity-446150",
    "published": "2026-11-25T12:24:32.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "ab55a554295b",
-   "title": "‘Don’t mess with X,’ Elon Musk says after platform secures default judgment in alleged bitcoin content-farm case",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/regulation/2026-11-25-dont-mess-with-x-elon-musk-says-after-platform-secures-default-judgment-in-alleged-bitcoin-content-farm-case-446151",
-   "published": "2026-11-25T12:14:27.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "9890d9abedde",
-   "title": "Hyperliquid Leads Altcoin Losses as Bitcoin Slips Below $59K",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383938/hyperliquid-leads-altcoin-losses-as-bitcoin-slips-below-59k",
-   "published": "2026-11-25T11:23:57.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "c408dd6c57f1",
-   "title": "Bitcoin ETFs near $5B in record monthly outflows amid AI stock rout",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/markets/bitcoin-etfs-near-record-5-billion-monthly-outflows?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-25T11:12:26.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "64b9253e8fcb",
-   "title": "Bitcoin price may fall below $53K if bear-market history repeats",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/markets/bitcoin-price-bear-market-history-repeats?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-25T11:09:38.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "46f43c27dbec",
-   "title": "Ethereum Foundation researchers pick one hash ‘to rule them all’ for post-quantum upgrade",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/ecosystems/2026-11-25-ethereum-foundation-researchers-pick-one-hash-to-rule-them-all-for-post-quantum-upgrade-446125",
-   "published": "2026-11-25T09:49:45.000Z",
-   "coins": [
-    "ETH"
-   ]
-  },
-  {
-   "id": "bdcee1413699",
-   "title": "Ark sells $6.8 million in its own bitcoin ETF as BTC dips below $59,000",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/business/2026-11-25-ark-sells-own-bitcoin-btc-dips-446109",
-   "published": "2026-11-25T07:26:57.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "e83ceaaf3136",
-   "title": "Bitcoin, ether get CFTC staff nod for expense requirements, Ethereum Foundation doubles security team, and more",
-   "source": "The Block",
-   "link": "https://www.theblock.co/newsletters/the-daily/2026-11-25-bitcoin-ether-cftc-staff-nod-ethereum-foundation-doubles-security-team-more-crypto-news-446074",
-   "published": "2026-11-25T05:15:00.000Z",
-   "coins": [
-    "BTC",
-    "ETH"
-   ]
-  },
-  {
-   "id": "e7c6372ba5be",
-   "title": "CleanSpark weighs selling more Bitcoin than it mines to de-risk books",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/news/cleanspark-weighs-selling-more-bitcoin-than-it-mines-to-de-risk-books?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-25T01:40:59.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "f90417a347d9",
-   "title": "Bitcoin Faces 6-Year Moving Average Test Only Seen During FTX Collapse",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/bitcoin-faces-6-year-moving-average-test-only-seen-during-ftx-collapse",
-   "published": "2026-11-24T22:30:03.000Z",
    "coins": [
     "BTC"
    ]
