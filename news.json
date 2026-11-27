@@ -1,6 +1,26 @@
 {
- "updated": "2026-11-26T22:57:48.474Z",
+ "updated": "2026-11-27T04:49:36.234Z",
  "items": [
+  {
+   "id": "483b025b66d5",
+   "title": "Ethereum devs set Glamsterdam’s Hoodi rollout for mid-December after delays",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/news/ethereum-devs-set-glamsterdams-hoodi-rollout-for-mid-december-after-delays?utm_source=rss_feed&utm_medium=rss_tag_ethereum&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-27T04:47:36.000Z",
+   "coins": [
+    "ETH"
+   ]
+  },
+  {
+   "id": "c3e2e3abfe73",
+   "title": "JPMorgan flags bitcoin ‘capitulation,’ Democrats push back on SEC’s crypto plans, and more",
+   "source": "The Block",
+   "link": "https://www.theblock.co/newsletters/the-daily/2026-11-26-jpmorgan-bitcoin-capitulation-democrats-sec-crypto-plans-more-news-447025",
+   "published": "2026-11-27T02:20:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
   {
    "id": "ad52ee34b6ae",
    "title": "Bitcoin Holds Above $60K as Death Cross Clouds Thanksgiving Recovery",
@@ -278,26 +298,6 @@
    "source": "Bitcoin Magazine",
    "link": "https://bitcoinmagazine.com/news/next-technology-nxtt-sells-500-bitcoin",
    "published": "2026-11-25T15:30:00.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "6acbc35f1ef6",
-   "title": "Square’s NATIONWIDE Bitcoin Payments Rollout: What People Are Actually Buying",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/squares-nationwide-bitcoin-payments-rollout-what-people-are-actually-buying",
-   "published": "2026-11-25T15:15:01.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "47fe8bc33534",
-   "title": "Bitcoin Price Slumps Below $57,500 as Nasdaq Sinks 4% at Open",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/markets/bitcoin-price-falls-57500-nasdaq",
-   "published": "2026-11-25T14:54:01.000Z",
    "coins": [
     "BTC"
    ]
