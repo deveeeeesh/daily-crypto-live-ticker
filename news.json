@@ -1,6 +1,86 @@
 {
- "updated": "2026-11-27T14:26:53.409Z",
+ "updated": "2026-11-27T22:50:20.628Z",
  "items": [
+  {
+   "id": "6b1290fc6f73",
+   "title": "Could AI Break Bitcoin? Not Yet, Research Firm K33 Says",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/384218/could-ai-break-bitcoin-not-yet-research-firm-k33-says",
+   "published": "2026-11-27T20:46:02.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "7466891470f6",
+   "title": "4 Scary Bitcoin Charts That Suggest This Bear Market Is Different",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/384177/bitcoin-4-scary-charts-crypto-winter-bear-market",
+   "published": "2026-11-27T19:46:02.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "7d4776a07e4f",
+   "title": "Bitcoin whales pile into BTC despite shrinking profit cushion",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/bitcoin-whales-pile-btc-despite-shrinking-profit-cushion?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-27T19:23:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "1be4888e0799",
+   "title": "$7 Billion in Bitcoin Options Just Expired: Here’s What It Means",
+   "source": "Decrypt",
+   "link": "https://decrypt.co/384154/7-billion-bitcoin-options-just-expired-what-it-means",
+   "published": "2026-11-27T18:16:03.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "1edd46aaddd1",
+   "title": "CryptoQuant says bitcoin price recovery needs USDT supply growth",
+   "source": "The Block",
+   "link": "https://www.theblock.co/news/markets/2026-11-27-cryptoquant-bitcoin-price-recovery-usdt-supply-growth-447560",
+   "published": "2026-11-27T18:13:45.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "88f17e0fded0",
+   "title": "Russia’s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test",
+   "published": "2026-11-27T17:06:12.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "540c666c9f10",
+   "title": "Bitcoin price drops below $59K as Anthropic joins tech stock rebound",
+   "source": "Cointelegraph",
+   "link": "https://cointelegraph.com/markets/bitcoin-price-below-59k-anthropic-tech-stock-rebound?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
+   "published": "2026-11-27T16:48:51.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
+  {
+   "id": "c09b1c75bb34",
+   "title": "Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target",
+   "source": "Bitcoin Magazine",
+   "link": "https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target",
+   "published": "2026-11-27T14:45:09.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
   {
    "id": "9a49c311f7dd",
    "title": "AI math breakthroughs revive Bitcoin security fears, but practical threat remains unproven: K33",
@@ -217,86 +297,6 @@
    "source": "The Block",
    "link": "https://www.theblock.co/news/regulation/2026-11-25-house-committee-advances-strategic-bitcoin-reserve-bill-446778",
    "published": "2026-11-26T03:03:01.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "1468fb83d4aa",
-   "title": "Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it",
-   "published": "2026-11-25T23:30:12.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "6ce80cfd933e",
-   "title": "Stanford Professor Reveals “Praxis” Bitcoin Cryptography Breakthrough",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/stanford-professor-reveals-praxis-bitcoin-cryptography-breakthrough",
-   "published": "2026-11-25T22:15:26.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "47c28c8fffa3",
-   "title": "Matt Hougan: $1.6 MILLION Bitcoin Price Target “Conservative”",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/videos/matt-hougan-1-6-million-bitcoin-price-target-conservative",
-   "published": "2026-11-25T21:22:24.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "a5bd5e5789a7",
-   "title": "Another Bitcoin Mining Firm Flags 'Hashrate Hijacking' Attacks That Reroute Rewards",
-   "source": "Decrypt",
-   "link": "https://decrypt.co/383999/another-bitcoin-mining-firm-hashrate-hijacking-attacks",
-   "published": "2026-11-25T20:36:03.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "4a9481385131",
-   "title": "Strategic Bitcoin Reserve Bill Clears House Committee, Heads to Floor",
-   "source": "Bitcoin Magazine",
-   "link": "https://bitcoinmagazine.com/news/strategic-bitcoin-reserve-bill-house-floor",
-   "published": "2026-11-25T19:50:00.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "036bbd2b9279",
-   "title": "Bitcoin miners hit by hashrate hijacking attack exploiting unencrypted connections",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/ecosystems/2026-11-25-bitcoin-miners-hit-hashrate-hijacking-attack-exploiting-unencrypted-connections-446723",
-   "published": "2026-11-25T19:37:10.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "7ae5339ef9c4",
-   "title": "Ethereum Foundation backs Keccak-256 to counter quantum, AI threats",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/news/ethereum-foundation-keccak-256-counter-quantum-ai-threats?utm_source=rss_feed&utm_medium=rss_tag_ethereum&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-25T18:54:51.000Z",
-   "coins": [
-    "ETH"
-   ]
-  },
-  {
-   "id": "5f570c6d04bb",
-   "title": "Bitcoin falls toward $57K amid US tariff fears, hot PCE data as Nasdaq drops 4%",
-   "source": "Cointelegraph",
-   "link": "https://cointelegraph.com/markets/bitcoin-falls-57k-us-tariff-pce-data-nasdaq-drops?utm_source=rss_feed&utm_medium=rss_tag_bitcoin&utm_campaign=rss_partner_inbound",
-   "published": "2026-11-25T17:33:22.000Z",
    "coins": [
     "BTC"
    ]
