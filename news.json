@@ -1,6 +1,16 @@
 {
- "updated": "2026-11-27T22:50:20.628Z",
+ "updated": "2026-11-28T04:27:37.116Z",
  "items": [
+  {
+   "id": "38630d86b40b",
+   "title": "Bitcoin recovery needs USDT supply growth: CryptoQuant, K33 weighs AI threat to Bitcoin, and more",
+   "source": "The Block",
+   "link": "https://www.theblock.co/newsletters/the-daily/2026-11-27-bitcoin-recovery-usdt-supply-ai-threat-bitcoin-more-crypto-news-447571",
+   "published": "2026-11-28T04:11:00.000Z",
+   "coins": [
+    "BTC"
+   ]
+  },
   {
    "id": "6b1290fc6f73",
    "title": "Could AI Break Bitcoin? Not Yet, Research Firm K33 Says",
@@ -287,16 +297,6 @@
    "source": "The Block",
    "link": "https://www.theblock.co/news/markets/2026-11-26-galaxy-walks-back-bitcoin-bottom-call-446786",
    "published": "2026-11-26T05:16:11.000Z",
-   "coins": [
-    "BTC"
-   ]
-  },
-  {
-   "id": "6c3de7af4264",
-   "title": "House Committee advances Strategic Bitcoin Reserve bill with narrow path to passage",
-   "source": "The Block",
-   "link": "https://www.theblock.co/news/regulation/2026-11-25-house-committee-advances-strategic-bitcoin-reserve-bill-446778",
-   "published": "2026-11-26T03:03:01.000Z",
    "coins": [
     "BTC"
    ]
